@@ -1,7 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
-import { ContentValidator } from "@/lib/validation";
-import { ChecklistLoader } from "@/lib/checklist-loader";
-import { FormatEnum, ValidationLevelEnum } from "@/types/rulepack";
+
+// Dynamic imports to prevent build-time issues
+async function getValidation() {
+  const { ContentValidator } = await import("@/lib/validation");
+  return ContentValidator;
+}
+
+async function getChecklistLoader() {
+  const { ChecklistLoader } = await import("@/lib/checklist-loader");
+  return ChecklistLoader;
+}
+
+async function getSchemas() {
+  const { FormatEnum, ValidationLevelEnum } = await import("@/types/rulepack");
+  return { FormatEnum, ValidationLevelEnum };
+}
 
 interface ValidateRequestBody {
   content: string;
@@ -33,6 +46,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const { FormatEnum, ValidationLevelEnum } = await getSchemas();
+
     // Validate format and level
     const formatResult = FormatEnum.safeParse(format);
     const levelResult = ValidationLevelEnum.safeParse(level);
@@ -59,6 +74,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const ContentValidator = await getValidation();
+
     // Perform content validation
     const validationResult = await ContentValidator.validateContent(
       content,
@@ -71,6 +88,7 @@ export async function POST(request: NextRequest) {
     let checklistResult = null;
     if (includeChecklist) {
       try {
+        const ChecklistLoader = await getChecklistLoader();
         checklistResult = await ChecklistLoader.validateAgainstChecklist(
           content,
           formatResult.data,
@@ -104,6 +122,8 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET() {
+  const { FormatEnum, ValidationLevelEnum } = await getSchemas();
+  
   return NextResponse.json({
     success: true,
     data: {

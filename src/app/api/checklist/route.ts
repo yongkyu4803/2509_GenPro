@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
-import { ChecklistLoader } from "@/lib/checklist-loader";
-import { FormatEnum, ValidationLevelEnum } from "@/types/rulepack";
+
+// Dynamic imports to prevent build-time issues
+async function getChecklistLoader() {
+  const { ChecklistLoader } = await import("@/lib/checklist-loader");
+  return ChecklistLoader;
+}
+
+async function getSchemas() {
+  const { FormatEnum, ValidationLevelEnum } = await import("@/types/rulepack");
+  return { FormatEnum, ValidationLevelEnum };
+}
 
 export async function GET(request: NextRequest) {
   try {
@@ -10,6 +19,8 @@ export async function GET(request: NextRequest) {
     const version = searchParams.get("version") || "v1";
     const category = searchParams.get("category");
     const flat = searchParams.get("flat") === "true";
+
+    const { FormatEnum, ValidationLevelEnum } = await getSchemas();
 
     // If no parameters, return available options
     if (!format || !level) {
@@ -55,6 +66,8 @@ export async function GET(request: NextRequest) {
         { status: 400 }
       );
     }
+
+    const ChecklistLoader = await getChecklistLoader();
 
     // Load checklist based on parameters
     let checklistData;
@@ -126,6 +139,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const { FormatEnum, ValidationLevelEnum } = await getSchemas();
+
     // Validate format and level
     const formatResult = FormatEnum.safeParse(format);
     const levelResult = ValidationLevelEnum.safeParse(level);
@@ -141,6 +156,8 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+
+    const ChecklistLoader = await getChecklistLoader();
 
     // Validate content against checklist
     const result = await ChecklistLoader.validateAgainstChecklist(

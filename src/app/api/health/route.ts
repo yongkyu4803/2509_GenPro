@@ -1,6 +1,15 @@
 import { NextResponse } from "next/server";
-import { RulepackLoader } from "@/lib/rulepack-loader";
-import { ChecklistLoader } from "@/lib/checklist-loader";
+
+// Dynamic imports to prevent build-time issues
+async function getRulepackLoader() {
+  const { RulepackLoader } = await import("@/lib/rulepack-loader");
+  return RulepackLoader;
+}
+
+async function getChecklistLoader() {
+  const { ChecklistLoader } = await import("@/lib/checklist-loader");
+  return ChecklistLoader;
+}
 
 export async function GET() {
   const startTime = Date.now();
@@ -23,6 +32,9 @@ export async function GET() {
   };
 
   try {
+    const RulepackLoader = await getRulepackLoader();
+    const ChecklistLoader = await getChecklistLoader();
+
     // Test rulepack loading
     const rulepackStart = Date.now();
     await RulepackLoader.loadFormatPack("press_release");

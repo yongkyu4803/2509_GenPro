@@ -338,8 +338,14 @@ export default function PromptGenerator() {
               </CardHeader>
               <CardContent>
                 {error && (
-                  <div className="p-4 rounded-md bg-red-50 text-red-700 border border-red-200">
-                    {error}
+                  <div className="p-4 rounded-lg bg-red-50 text-red-700 border border-red-200 animate-fade-up">
+                    <div className="flex items-start gap-3">
+                      <span className="text-red-500 mt-0.5">❌</span>
+                      <div>
+                        <h5 className="font-medium text-red-800 mb-1">오류 발생</h5>
+                        <p className="text-sm">{error}</p>
+                      </div>
+                    </div>
                   </div>
                 )}
 
@@ -403,46 +409,77 @@ export default function PromptGenerator() {
 
                     {/* Validation Results */}
                     {result.data.validation && (
-                      <div className="space-y-3">
-                        <div
-                          className={`p-2 rounded text-sm ${
+                      <div>
+                        <h4 className="text-lg font-medium text-foreground mb-4">검증 결과</h4>
+                        <div className="space-y-4">
+                          <div className={`p-4 rounded-lg border ${
                             result.data.validation.passed
-                              ? "bg-green-50 text-green-800"
-                              : "bg-yellow-50 text-yellow-800"
-                          }`}
-                        >
-                          검증 통과: {result.data.validation.passed ? "성공" : "주의 필요"} (점수: {result.data.validation.score}/100)
+                              ? "bg-green-50 border-green-200 text-green-800"
+                              : "bg-yellow-50 border-yellow-200 text-yellow-800"
+                          }`}>
+                            <div className="flex items-center gap-2">
+                              <div className={`w-3 h-3 rounded-full ${
+                                result.data.validation.passed ? "bg-green-500" : "bg-yellow-500"
+                              }`} />
+                              <span className="font-medium">
+                                {result.data.validation.passed ? "검증 성공" : "주의 필요"}
+                              </span>
+                              <span className="ml-auto text-sm font-mono">
+                                {result.data.validation.score}/100점
+                              </span>
+                            </div>
+                          </div>
+
+                          {result.data.validation.warnings && result.data.validation.warnings.length > 0 && (
+                            <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                              <h5 className="font-medium text-yellow-800 mb-3 flex items-center gap-2">
+                                <span className="text-yellow-500">⚠️</span>
+                                경고사항
+                              </h5>
+                              <ul className="space-y-2">
+                                {result.data.validation.warnings.map((warning, index) => (
+                                  <li key={index} className="text-yellow-700 text-sm flex items-start gap-2">
+                                    <span className="text-yellow-500 mt-1">•</span>
+                                    <span>{warning}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+
+                          {result.data.validation.suggestions && result.data.validation.suggestions.length > 0 && (
+                            <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                              <h5 className="font-medium text-blue-800 mb-3 flex items-center gap-2">
+                                <span className="text-blue-500">💡</span>
+                                개선 제안
+                              </h5>
+                              <ul className="space-y-2">
+                                {result.data.validation.suggestions.map((suggestion, index) => (
+                                  <li key={index} className="text-blue-700 text-sm flex items-start gap-2">
+                                    <span className="text-blue-500 mt-1">•</span>
+                                    <span>{suggestion}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
                         </div>
-
-                        {result.data.validation.warnings && result.data.validation.warnings.length > 0 && (
-                          <div>
-                            <div className="font-medium text-sm mb-1">경고사항:</div>
-                            <ul className="text-sm space-y-1">
-                              {result.data.validation.warnings.map((warning, index) => (
-                                <li key={index} className="text-yellow-700">• {warning}</li>
-                              ))}
-                            </ul>
-                          </div>
-                        )}
-
-                        {result.data.validation.suggestions && result.data.validation.suggestions.length > 0 && (
-                          <div>
-                            <div className="font-medium text-sm mb-1">개선 제안:</div>
-                            <ul className="text-sm space-y-1">
-                              {result.data.validation.suggestions.map((suggestion, index) => (
-                                <li key={index} className="text-blue-700">• {suggestion}</li>
-                              ))}
-                            </ul>
-                          </div>
-                        )}
                       </div>
                     )}
                   </div>
                 )}
 
                 {!result && !error && !isLoading && (
-                  <div className="text-center text-muted-foreground py-8">
-                    양식을 작성하고 생성 버튼을 클릭하세요
+                  <div className="text-center py-12 animate-fade-up">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center">
+                      <span className="text-2xl">📝</span>
+                    </div>
+                    <p className="text-muted-foreground text-lg font-medium mb-2">
+                      프롬프트 생성 준비 완료
+                    </p>
+                    <p className="text-muted-foreground/70 text-sm">
+                      위의 양식을 작성하고 생성 버튼을 클릭하세요
+                    </p>
                   </div>
                 )}
               </CardContent>

@@ -1,11 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
-import { RulepackLoader } from "@/lib/rulepack-loader";
+
+// Dynamic imports to prevent build-time issues
+async function getRulepackLoader() {
+  const { RulepackLoader } = await import("@/lib/rulepack-loader");
+  return RulepackLoader;
+}
 
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const format = searchParams.get("format");
     const version = searchParams.get("version") || "v1";
+
+    const RulepackLoader = await getRulepackLoader();
 
     // If no format specified, return all available formats
     if (!format) {
@@ -68,6 +75,8 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+
+    const RulepackLoader = await getRulepackLoader();
 
     // Validate all formats
     const invalidFormats = formats.filter(
