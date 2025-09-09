@@ -217,7 +217,9 @@ export async function getDefaultMode(
   if (!rulepack || !rulepack.modes) return null;
 
   const modeKeys = Object.keys(rulepack.modes);
-  return modeKeys.length > 0 ? modeKeys[0] : null;
+  if (modeKeys.length === 0) return null;
+  const first = modeKeys[0];
+  return first ?? null;
 }
 
 /**
