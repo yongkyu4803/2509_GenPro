@@ -1,0 +1,109 @@
+id: media_scraping_v1
+type: formatPack
+toneDefault: neutral_v1
+
+# 새로 추가: 모드 정의
+modes:
+  list_only:
+    description: "주제에 대한 언론보도 '링크 리스트'만 반환(요약/분석 없음)"
+    requiredSections: [keywords, scope, article_list_spec]
+  full_analysis:
+    description: "수집-분석-요약-트렌드까지 전체 수행"
+    requiredSections: [keywords, scope, analysis_criteria, summary_format, trends]
+
+# 하위 호환(기존 유지). list_only 모드 사용 시 아래 requiredSections는 무시됨.
+requiredSections:
+  - keywords
+  - scope
+  - analysis_criteria
+  - summary_format
+  - trends
+dos:
+  - "검색 키워드를 체계적으로 설정한다."
+  - "수집 범위를 명확히 한정한다."
+  - "분석 기준을 객관적으로 설정한다."
+  - "요약 형식을 구조화한다."
+  - "트렌드 변화를 파악한다."
+donts:
+  - "편향된 키워드 선택"
+  - "무제한 범위 설정"
+  - "주관적 분석 기준"
+  - "비구조화된 요약"
+  - "JSON 형태로 반환 요청"
+
+structureHints:
+  keywords:
+    combinations: "핵심어+동의어+관련어"
+    operators: "AND, OR, NOT 활용"
+    exclusions: "제외할 키워드 명시"
+  scope:
+    period: "수집 기간 (YYYY-MM-DD ~ YYYY-MM-DD)"
+    media: "매체 범위 (신문/방송/온라인/SNS)"
+    region: "지역 범위 (전국/지역/해외)"
+    language: "언어 (한국어/영어/기타)"
+  analysis_criteria:
+    sentiment: ["긍정", "부정", "중립"]
+    reliability: "매체 신뢰도 기준"
+    relevance: "관련성 평가 기준"
+  summary_format:
+    structure: ["시계열", "주제별", "매체별", "영향도별"]
+    priority: "중요도 순 정렬"
+    metrics: "수치/통계 포함"
+  trends:
+    changes: "시간별 변화 추이"
+    patterns: "반복되는 패턴"
+    influences: "영향 요인 분석"
+
+# ★ 새로 추가: 기사 리스트 반환 명세(리스트 전용 모드 필수)
+article_list_spec:
+  output_format: "markdown_list"        # 고정: 마크다운 링크 목록
+  line_template: "- [<원제목>](<정규화URL>) — <매체> | <YYYY-MM-DD>"
+  link_text_policy:
+    - "링크 텍스트는 기사 '원제목'을 공백·구두점까지 그대로 사용(줄임표/의역 금지)."
+    - "제목 수정 이력이 명시된 경우 '(수정: HH:MM)'만 말미에 덧붙일 수 있음."
+  url_canonicalization:
+    prefer_domain_order:
+      - "언론사 공식 도메인(https, www 생략 허용)"
+      - "포털 원문(예: Naver News) — 추적파라미터 제거"
+      - "최후 수단: 공신력 있는 아카이브(archive.today 등)"
+    strip_params: ["utm_*", "gclid", "fbclid", "igshid", "spm", "ck", "utm_source", "utm_medium", "utm_campaign"]
+    normalize_rules:
+      - "http→https 강제"
+      - "끝 슬래시/앵커(#...) 제거(의미있는 섹션링크 제외)"
+  filtering:
+    exclude_opinion: true               # 사설/칼럼 제외(원하면 false)
+    require_body_presence: false        # 본문 확인 강제 여부(기본: 미강제)
+    allow_paywall: true                 # 페이월 허용(가능하면 대체 링크 병기 금지)
+  sorting:
+    sort_by: "date_desc"                # date_desc | date_asc | publisher | title
+    tie_breaker: "publisher_alpha"
+  count:
+    min: 10
+    max: 50
+    default: 20
+  grouping:
+    enabled: true
+    by: "date"                          # date | publisher | none
+    header_template: "## <YYYY-MM-DD>"
+  deduplication:
+    strategy: "title_norm+host+±48h"    # 제목 정규화+호스트+시간창으로 중복 통합
+    title_norm:
+      - "괄호/대괄호 태그 제거(예: [속보])"
+      - "연속 공백 정규화"
+      - "전각/반각·따옴표 통일"
+  fields_per_item:                      # 렌더링은 line_template에 따르되 내부 필드 정의
+    - title_original
+    - url_canonical
+    - publisher
+    - date_yyyy_mm_dd
+  notes:
+    - "설명·요약·해설 금지(리스트 전용 모드)."
+    - "각 항목 끝에 마침표를 붙이지 않음."
+    - "링크 유효성(응답 200대) 점검 실패 시 해당 항목 제외 또는 대체 링크로 교체."
+
+complianceRules:
+  - objective_tone
+  - source_required
+  - systematic_approach
+  - no_bias
+  - text_output_only

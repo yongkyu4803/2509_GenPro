@@ -1,0 +1,49 @@
+id: press_release_v1
+type: formatPack
+requiredSections:
+  - headline
+  - lead
+  - body
+  - quote
+  - background
+  - contact
+toneDefault: public_official_v1
+dos:
+  - "명확하고 간결한 제목을 작성한다."
+  - "첫 문단에 핵심 내용을 담는다."
+  - "객관적이고 정확한 정보를 제공한다."
+  - "적절한 인용문을 포함한다."
+  - "배경 정보를 충분히 설명한다."
+  - "연락처 정보를 명시한다."
+donts:
+  - "과장된 표현이나 미사여구"
+  - "주관적 판단이나 추측"
+  - "불확실한 정보"
+  - "복잡하고 긴 문장"
+  - "전문용어 남용"
+structureHints:
+  headline:
+    maxLines: 2
+    keyPoints: "핵심 메시지 압축"
+    format: "능동형 문장, 구체적 내용"
+  lead:
+    maxLines: 2
+    keyPoints: "5W1H 포함"
+    format: "첫 문단에 핵심 요약"
+  body:
+    structure: "중요도 순 배열"
+    requirements: ["구체적 사실", "논리적 전개"]
+  quote:
+    source: "담당자 또는 관련 인물"
+    purpose: "입장 표명 및 설명 보완"
+  background:
+    description: "정책 또는 사안의 배경"
+    requirements: ["관련 법령", "추진 경과"]
+  contact:
+    includes: ["담당 부서", "연락처", "이메일"]
+complianceRules:
+  - accuracy_required
+  - official_tone
+  - complete_information
+  - clear_structure
+  - contact_included

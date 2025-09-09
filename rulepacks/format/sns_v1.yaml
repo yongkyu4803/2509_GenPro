@@ -1,0 +1,43 @@
+id: sns_v1
+type: formatPack
+requiredSections:
+  - hook
+  - main_content
+  - call_to_action
+  - hashtags
+toneDefault: public_official_v1
+dos:
+  - "간결하고 임팩트 있는 메시지를 작성한다."
+  - "적절한 해시태그를 활용한다."
+  - "시각적 요소를 고려한다."
+  - "참여를 유도하는 내용을 포함한다."
+  - "플랫폼 특성에 맞게 최적화한다."
+  - "정확하고 신뢰할 수 있는 정보를 제공한다."
+donts:
+  - "지나치게 긴 텍스트"
+  - "복잡한 내용"
+  - "과도한 해시태그 사용"
+  - "선정적이거나 자극적 표현"
+  - "확인되지 않은 정보"
+structureHints:
+  hook:
+    maxLines: 1
+    keyPoints: "관심을 끄는 첫 문장"
+    format: "질문, 놀라운 사실, 또는 강력한 메시지"
+  main_content:
+    maxCharacters: 200
+    requirements: ["핵심 메시지", "구체적 내용"]
+    format: "단락별 구분, 이모지 활용 가능"
+  call_to_action:
+    purpose: "참여 또는 행동 유도"
+    examples: ["의견 공유", "링크 클릭", "공유하기"]
+  hashtags:
+    maxCount: 5
+    requirements: ["관련성", "검색 가능성"]
+    format: "# 형태로 작성"
+complianceRules:
+  - character_limit
+  - platform_optimized
+  - engaging_content
+  - accurate_information
+  - appropriate_hashtags

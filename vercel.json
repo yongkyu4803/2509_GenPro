@@ -1,0 +1,54 @@
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm ci",
+  "framework": "nextjs",
+  "functions": {
+    "src/app/api/**/*.ts": {
+      "runtime": "nodejs20.x"
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/healthcheck",
+      "destination": "/api/health"
+    }
+  ],
+  "env": {
+    "NEXT_PUBLIC_APP_NAME": "@NEXT_PUBLIC_APP_NAME",
+    "NEXT_PUBLIC_APP_VERSION": "@NEXT_PUBLIC_APP_VERSION",
+    "NEXT_PUBLIC_API_BASE_URL": "@NEXT_PUBLIC_API_BASE_URL",
+    "NEXT_PUBLIC_TOKEN_LIMIT_BASIC": "@NEXT_PUBLIC_TOKEN_LIMIT_BASIC",
+    "NEXT_PUBLIC_TOKEN_LIMIT_INTERMEDIATE": "@NEXT_PUBLIC_TOKEN_LIMIT_INTERMEDIATE",
+    "NEXT_PUBLIC_TOKEN_LIMIT_ADVANCED": "@NEXT_PUBLIC_TOKEN_LIMIT_ADVANCED",
+    "NEXT_PUBLIC_RULEPACK_VERSION": "@NEXT_PUBLIC_RULEPACK_VERSION",
+    "NEXT_PUBLIC_DEFAULT_TONE": "@NEXT_PUBLIC_DEFAULT_TONE",
+    "NEXT_PUBLIC_SUPPORTED_FORMATS": "@NEXT_PUBLIC_SUPPORTED_FORMATS",
+    "NEXT_PUBLIC_ENABLE_STRICT_VALIDATION": "@NEXT_PUBLIC_ENABLE_STRICT_VALIDATION",
+    "NEXT_PUBLIC_MAX_PROMPT_LENGTH": "@NEXT_PUBLIC_MAX_PROMPT_LENGTH",
+    "NEXT_PUBLIC_ENABLE_ANALYTICS": "@NEXT_PUBLIC_ENABLE_ANALYTICS",
+    "NEXT_PUBLIC_ENABLE_DEBUG": "@NEXT_PUBLIC_ENABLE_DEBUG",
+    "NEXT_PUBLIC_ENABLE_EXPORT": "@NEXT_PUBLIC_ENABLE_EXPORT",
+    "NEXT_PUBLIC_CACHE_TTL": "@NEXT_PUBLIC_CACHE_TTL",
+    "NEXT_PUBLIC_ENABLE_CACHING": "@NEXT_PUBLIC_ENABLE_CACHING"
+  }
+}

@@ -1,0 +1,42 @@
+id: report_v1
+type: formatPack
+requiredSections:
+  - summary
+  - background
+  - analysis
+  - conclusion
+  - appendix
+toneDefault: public_official_v1
+dos:
+  - "객관적 사실에 기반하여 작성한다."
+  - "다각도 관점에서 분석한다."
+  - "구체적 실행방안을 제시한다."
+  - "참고자료 목록을 포함한다."
+  - "논리적 구조로 전개한다."
+donts:
+  - "주관적 판단이나 추측"
+  - "근거 없는 주장"
+  - "감정적 표현"
+  - "일방적 시각"
+structureHints:
+  summary:
+    maxLines: 3
+    keyPoints: "핵심 내용만 압축"
+    format: "결론 우선 기술"
+  background:
+    description: "현재 상황과 배경 설명"
+    requirements: ["사실 중심", "객관적 기술"]
+  analysis:
+    perspectives: ["현황 분석", "쟁점 파악", "대안 검토"]
+    structure: "문제점 → 원인 → 영향 → 대안"
+  conclusion:
+    actionItems: "구체적 실행방안"
+    timeline: "단계별 추진계획"
+  appendix:
+    includes: ["참고자료", "통계", "법령", "사례"]
+complianceRules:
+  - facts_required
+  - source_required
+  - objective_tone
+  - no_exaggeration
+  - evidence_based

@@ -1,0 +1,47 @@
+id: speech_v1
+type: formatPack
+requiredSections:
+  - opening
+  - introduction
+  - main_points
+  - conclusion
+  - closing
+toneDefault: public_official_v1
+dos:
+  - "청중에게 적합한 언어로 작성한다."
+  - "명확한 구조로 전개한다."
+  - "핵심 메시지를 반복 강조한다."
+  - "구체적 사례를 활용한다."
+  - "감동적이고 기억에 남을 마무리를 한다."
+  - "적절한 호명과 인사를 포함한다."
+donts:
+  - "지나치게 긴 문장"
+  - "어려운 전문용어 남발"
+  - "일방적인 주장"
+  - "부정적이거나 공격적 표현"
+  - "논점을 벗어난 내용"
+structureHints:
+  opening:
+    maxLines: 3
+    keyPoints: "인사 및 참석자 호명"
+    format: "정중하고 친근한 톤"
+  introduction:
+    purpose: "연설 배경 및 목적 설명"
+    requirements: ["현재 상황 인식", "연설 취지"]
+  main_points:
+    structure: "3-5개 핵심 포인트"
+    requirements: ["논리적 순서", "구체적 근거", "사례 활용"]
+    format: "각 포인트별 명확한 구분"
+  conclusion:
+    keyPoints: "핵심 메시지 재강조"
+    format: "행동 촉구 또는 비전 제시"
+  closing:
+    maxLines: 2
+    keyPoints: "감사 인사 및 마무리"
+    format: "긍정적이고 희망적 메시지"
+complianceRules:
+  - audience_appropriate
+  - clear_message
+  - logical_flow
+  - engaging_content
+  - respectful_tone
