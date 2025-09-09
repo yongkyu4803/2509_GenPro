@@ -115,7 +115,7 @@ export class LLMClient {
       });
 
       // Create OpenAI request with model-specific parameters
-      const requestParams: any = {
+      const requestParams: OpenAI.Chat.Completions.ChatCompletionCreateParams = {
         model: this.config.model,
         messages: [
           {
@@ -155,14 +155,20 @@ export class LLMClient {
       }
 
       // Log the actual request parameters for debugging
-      console.log(`[${request.requestId}] OpenAI Request Params:`, JSON.stringify({
-        model: requestParams.model,
-        verbosity: requestParams.verbosity,
-        reasoning_effort: requestParams.reasoning_effort,
-        max_tokens: requestParams.max_tokens,
-        max_completion_tokens: requestParams.max_completion_tokens,
-        temperature: requestParams.temperature
-      }, null, 2));
+      console.log(
+        `[${request.requestId}] OpenAI Request Params:`,
+        JSON.stringify(
+          {
+            model: requestParams.model,
+            reasoning_effort: (requestParams as any).reasoning_effort,
+            max_tokens: (requestParams as any).max_tokens,
+            max_completion_tokens: (requestParams as any).max_completion_tokens,
+            temperature: (requestParams as any).temperature,
+          },
+          null,
+          2
+        )
+      );
 
       const openaiPromise = this.openai.chat.completions.create(requestParams);
 
