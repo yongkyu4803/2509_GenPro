@@ -24,6 +24,12 @@ const tabs: NavTab[] = [
     label: '프롬프트 라이브러리',
     href: 'https://prompt-parkyongkyus-projects.vercel.app/library',
     icon: BookOpen
+  },
+  {
+    id: 'library',
+    label: '프롬프트 스터디',
+    href: 'https://prompt-parkyongkyus-projects.vercel.app/study',
+    icon: BookOpen
   }
 ];
 
