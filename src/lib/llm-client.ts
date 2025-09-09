@@ -160,10 +160,10 @@ export class LLMClient {
         JSON.stringify(
           {
             model: requestParams.model,
-            reasoning_effort: (requestParams as any).reasoning_effort,
-            max_tokens: (requestParams as any).max_tokens,
-            max_completion_tokens: (requestParams as any).max_completion_tokens,
-            temperature: (requestParams as any).temperature,
+            reasoning_effort: requestParams.reasoning_effort ?? undefined,
+            max_tokens: requestParams.max_tokens ?? undefined,
+            max_completion_tokens: requestParams.max_completion_tokens ?? undefined,
+            temperature: requestParams.temperature ?? undefined,
           },
           null,
           2
