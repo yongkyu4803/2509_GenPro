@@ -75,7 +75,7 @@ export default function GuidePage() {
                       핵심 개념
                     </h4>
                     <p className="text-blue-700">
-                      이 서비스는 <strong>"메타 도구"</strong>입니다. 주제와 형식을 입력하면 
+                      이 서비스는 <strong>&ldquo;메타 도구&rdquo;</strong>입니다. 주제와 형식을 입력하면 
                       전문적인 프롬프트를 생성해주고, 이를 복사해서 어떤 AI 서비스에서든 재사용할 수 있습니다.
                     </p>
                   </div>
@@ -136,7 +136,7 @@ export default function GuidePage() {
                         <h5 className="font-semibold text-foreground mb-1">주제 입력</h5>
                         <p className="text-muted-foreground text-sm">
                           작성하고자 하는 콘텐츠의 핵심 주제를 간단명료하게 입력하세요.
-                          <br />예: "청년 창업 지원 정책 발표"
+                          <br />예: &ldquo;청년 창업 지원 정책 발표&rdquo;
                         </p>
                       </div>
                     </div>

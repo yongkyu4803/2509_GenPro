@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { BookOpen, Sparkles, Settings, ExternalLink, Mail, Zap } from 'lucide-react';
+import { BookOpen, Sparkles, ExternalLink, Mail, Zap } from 'lucide-react';
 
 interface NavTab {
   id: string;
