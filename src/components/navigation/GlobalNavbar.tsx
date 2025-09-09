@@ -26,7 +26,7 @@ const tabs: NavTab[] = [
     icon: BookOpen
   },
   {
-    id: 'library',
+    id: 'study',
     label: '프롬프트 스터디',
     href: 'https://prompt-parkyongkyus-projects.vercel.app/study',
     icon: BookOpen
@@ -39,7 +39,7 @@ export default function GlobalNavbar() {
   // 현재 활성 탭 결정
   const getActiveTab = () => {
     if (pathname === '/') return 'generator';
-    return 'generator'; // 현재는 생성기 페이지만 있으므로
+    return 'generator'; // 기본값
   };
 
   const activeTab = getActiveTab();
@@ -54,7 +54,7 @@ export default function GlobalNavbar() {
               <Sparkles className="text-white" size={18} />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-gray-900">국회 보좌진 프롬프트 생성기</h1>
+              <h1 className="text-lg font-bold text-gray-900">Prompt Generator</h1>
             </div>
           </Link>
 

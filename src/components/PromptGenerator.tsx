@@ -1,12 +1,14 @@
 "use client"
 
 import { useMemo, useState } from "react"
+import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Form, FormControl, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
+import { HelpCircle } from "lucide-react"
 import {
   type Format,
   type ValidationLevel,
@@ -122,6 +124,17 @@ export default function PromptGenerator() {
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-accent/5">
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
+          
+          {/* 가이드 버튼 영역 */}
+          <div className="mb-6 flex justify-end">
+            <Link 
+              href="/guide"
+              className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm hover:bg-white/90 border border-border/30 rounded-lg shadow-sm transition-all duration-200 text-sm font-medium text-muted-foreground hover:text-foreground"
+            >
+              <HelpCircle size={16} />
+              <span>사용자 가이드</span>
+            </Link>
+          </div>
 
           <div className="grid grid-cols-1 gap-8">
             {/* Form Section */}
