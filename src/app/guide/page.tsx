@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 
@@ -183,7 +184,7 @@ export default function GuidePage() {
                       <div>
                         <h5 className="font-semibold text-foreground mb-1">프롬프트 생성 & 복사</h5>
                         <p className="text-muted-foreground text-sm">
-                          "프롬프트 생성" 버튼을 클릭하고, 결과를 복사하여 AI 도구에서 사용하세요.
+                          &ldquo;프롬프트 생성&rdquo; 버튼을 클릭하고, 결과를 복사하여 AI 도구에서 사용하세요.
                         </p>
                       </div>
                     </div>
@@ -469,7 +470,7 @@ export default function GuidePage() {
                     <div className="bg-emerald-50 p-4 rounded border border-emerald-200">
                       <h5 className="font-semibold text-emerald-800 mb-2">결과</h5>
                       <p className="text-emerald-700 text-sm">
-                        "정부 정책 발표용 보도자료를 작성하는 전문가로서, 청년 창업 지원 정책에 대한 보도자료를 작성해주세요..."
+                        &ldquo;정부 정책 발표용 보도자료를 작성하는 전문가로서, 청년 창업 지원 정책에 대한 보도자료를 작성해주세요...&rdquo;
                         와 같은 형태의 전문적인 프롬프트가 생성됩니다.
                       </p>
                     </div>
@@ -542,17 +543,17 @@ export default function GuidePage() {
                     <div className="bg-green-50 p-4 rounded-lg border border-green-200">
                       <h5 className="font-semibold text-green-800 mb-2">좋은 예시</h5>
                       <ul className="text-green-700 text-sm space-y-2">
-                        <li>• "청년 창업 지원 정책 발표"</li>
-                        <li>• "디지털 교육 환경 개선 방안"</li>
-                        <li>• "소상공인 대출 금리 인하 조치"</li>
+                        <li>• &ldquo;청년 창업 지원 정책 발표&rdquo;</li>
+                        <li>• &ldquo;디지털 교육 환경 개선 방안&rdquo;</li>
+                        <li>• &ldquo;소상공인 대출 금리 인하 조치&rdquo;</li>
                       </ul>
                     </div>
                     <div className="bg-red-50 p-4 rounded-lg border border-red-200">
                       <h5 className="font-semibold text-red-800 mb-2">피해야 할 예시</h5>
                       <ul className="text-red-700 text-sm space-y-2">
-                        <li>• "정책" (너무 추상적)</li>
-                        <li>• "좋은 일을 했어요" (모호함)</li>
-                        <li>• "어제 회의에서..." (맥락 부족)</li>
+                        <li>• &ldquo;정책&rdquo; (너무 추상적)</li>
+                        <li>• &ldquo;좋은 일을 했어요&rdquo; (모호함)</li>
+                        <li>• &ldquo;어제 회의에서...&rdquo; (맥락 부족)</li>
                       </ul>
                     </div>
                   </div>
@@ -582,7 +583,7 @@ export default function GuidePage() {
                       <div>
                         <h6 className="font-semibold text-blue-800 mb-2">예시</h6>
                         <p className="text-blue-700 text-sm bg-blue-100 p-2 rounded">
-                          "최근 청년 실업률이 8.2%로 증가했고, 창업 준비 과정에서 자금 조달의 어려움이 주요 장벽으로 작용하고 있습니다."
+                          &ldquo;최근 청년 실업률이 8.2%로 증가했고, 창업 준비 과정에서 자금 조달의 어려움이 주요 장벽으로 작용하고 있습니다.&rdquo;
                         </p>
                       </div>
                     </div>
@@ -641,7 +642,7 @@ export default function GuidePage() {
                       <div>
                         <h6 className="font-semibold text-orange-800 mb-2">프롬프트 생성 관련</h6>
                         <ul className="text-orange-700 text-sm space-y-1">
-                          <li>• 생성된 것은 "프롬프트"이지 완성된 콘텐츠가 아닙니다</li>
+                          <li>• 생성된 것은 &ldquo;프롬프트&rdquo;이지 완성된 콘텐츠가 아닙니다</li>
                           <li>• 반드시 AI 도구에 붙여넣기해서 실제 콘텐츠를 생성해야 합니다</li>
                           <li>• 한 번에 완벽한 결과가 나오지 않을 수 있으므로 여러 번 시도해보세요</li>
                         </ul>
@@ -737,7 +738,7 @@ export default function GuidePage() {
                       <div className="p-4 pt-0">
                         <p className="text-muted-foreground">
                           일반적으로 3초 이내에 완료됩니다. 
-                          더 빠른 결과를 원한다면 '기본' 레벨을 선택하고, 
+                          더 빠른 결과를 원한다면 &lsquo;기본&rsquo; 레벨을 선택하고, 
                           추가 요구사항을 줄여보세요.
                         </p>
                       </div>
@@ -817,13 +818,13 @@ export default function GuidePage() {
               <p className="text-primary/80 mb-4">
                 이 가이드를 참고하여 효과적인 프롬프트를 만들어보세요
               </p>
-              <a 
+              <Link 
                 href="/" 
                 className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors font-medium"
               >
                 <span>프롬프트 생성하러 가기</span>
                 <span>→</span>
-              </a>
+              </Link>
             </div>
           </div>
 
