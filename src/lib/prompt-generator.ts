@@ -87,7 +87,7 @@ export class PromptGenerator {
     level: ValidationLevel;
     topic: string;
     context?: string;
-    tone: string;
+    // tone parameter omitted (unused)
     additionalRequirements?: string[];
     strictMode?: boolean;
   }): string {
@@ -188,7 +188,7 @@ export class PromptGenerator {
     promptText: string,
     format: Format,
     level: ValidationLevel,
-    version: string = 'v1'
+    // version parameter omitted (unused)
   ): Promise<{
     validation: {
       isValid: boolean;
@@ -332,7 +332,7 @@ export class PromptGenerator {
     let checklist;
     try {
       checklist = await ChecklistLoader.validateAgainstChecklist(content, format, level, version);
-    } catch (error) {
+    } catch (_error) {
       // Create fallback checklist result if file doesn't exist
       checklist = {
         format,

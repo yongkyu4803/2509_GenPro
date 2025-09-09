@@ -124,7 +124,7 @@ export async function POST(request: NextRequest) {
       format: userInput.format,
       level: userInput.level,
       tone: userInput.tone || 'public_official_v1',
-      mode: userInput.mode, // Pass mode for rulepack modes
+      ...(userInput.mode ? { mode: userInput.mode } : {}),
       additionalRequirements: userInput.additionalRequirements || [],
       strictMode: userInput.options?.strictMode || false,
     });
@@ -133,10 +133,12 @@ export async function POST(request: NextRequest) {
       format: userInput.format,
       level: userInput.level,
       topic: userInput.topic,
-      context: userInput.context || undefined,
-      tone: userInput.tone || undefined,
-      mode: userInput.mode, // Pass mode for rulepack modes
-      additionalRequirements: userInput.additionalRequirements || undefined,
+      ...(userInput.context ? { context: userInput.context } : {}),
+      ...(userInput.tone ? { tone: userInput.tone } : {}),
+      ...(userInput.mode ? { mode: userInput.mode } : {}),
+      ...(userInput.additionalRequirements && userInput.additionalRequirements.length
+        ? { additionalRequirements: userInput.additionalRequirements }
+        : {}),
       options: userInput.options,
     });
 
