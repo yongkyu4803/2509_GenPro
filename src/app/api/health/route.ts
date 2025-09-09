@@ -68,3 +68,4 @@ export async function GET() {
   return NextResponse.json(health);
 }
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";

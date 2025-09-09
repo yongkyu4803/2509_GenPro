@@ -18,6 +18,7 @@ import PromptGenerator from '@/lib/prompt-generator';
 
 // Runtime configuration for Node.js (required for file system access)
 export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
 
 export async function POST(request: NextRequest) {
   const requestId = uuidv4();
