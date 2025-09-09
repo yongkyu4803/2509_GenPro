@@ -25,8 +25,8 @@ export const FormatPackSchema = RulepackSchema.extend({
   type: z.literal("formatPack"),
 });
 
-// Union type for all rulepack types
-export const AnyRulepackSchema = z.union([FormatPackSchema]);
+// Union type for all rulepack types (just use FormatPackSchema since there's only one type)
+export const AnyRulepackSchema = FormatPackSchema;
 
 // TypeScript types
 export type Mode = z.infer<typeof ModeSchema>;

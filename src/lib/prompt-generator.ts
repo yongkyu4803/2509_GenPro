@@ -39,10 +39,10 @@ export class PromptGenerator {
       `${requiredSections.map(s => `• ${this.getSectionDisplayName(s)}`).join('\n')}`,
       '',
       `✅ 작성 원칙:`,
-      `${rulepack.dos.map(d => `• ${d}`).join('\n')}`,
+      `${rulepack.dos.map((d: string) => `• ${d}`).join('\n')}`,
       '',
       `❌ 금지사항:`,
-      `${rulepack.donts.map(d => `• ${d}`).join('\n')}`,
+      `${rulepack.donts.map((d: string) => `• ${d}`).join('\n')}`,
       '',
       `🎯 프롬프트 생성 지침:`,
       `1. 주제를 분석하여 해당 분야의 특성을 파악하세요`,
@@ -55,7 +55,7 @@ export class PromptGenerator {
 
     if (rulepack.complianceRules && rulepack.complianceRules.length > 0) {
       sections.push(``, `🔒 준수사항:`);
-      rulepack.complianceRules.forEach(rule => {
+      rulepack.complianceRules.forEach((rule: string) => {
         sections.push(`• ${this.getComplianceRuleDescription(rule)}`);
       });
     }
@@ -102,13 +102,13 @@ export class PromptGenerator {
       `다음 주제와 조건에 맞춰 높은 품질의 ${formatName}을(를) 작성해주세요.`,
       '',
       `📋 필수 구성 요소:`,
-      `${rulepack.requiredSections.map(s => `• ${this.getSectionDisplayName(s)}`).join('\n')}`,
+      `${rulepack.requiredSections.map((s: string) => `• ${this.getSectionDisplayName(s)}`).join('\n')}`,
       '',
       `✅ 작성 원칙:`,
-      `${rulepack.dos.map(d => `• ${d}`).join('\n')}`,
+      `${rulepack.dos.map((d: string) => `• ${d}`).join('\n')}`,
       '',
       `❌ 금지사항:`,
-      `${rulepack.donts.map(d => `• ${d}`).join('\n')}`,
+      `${rulepack.donts.map((d: string) => `• ${d}`).join('\n')}`,
       '',
       `📝 작성 가이드:`,
       `• 전문적이고 공식적인 어조 유지`,
@@ -120,7 +120,7 @@ export class PromptGenerator {
 
     if (rulepack.complianceRules && rulepack.complianceRules.length > 0) {
       sections.push(``, `🔒 준수사항:`);
-      rulepack.complianceRules.forEach(rule => {
+      rulepack.complianceRules.forEach((rule: string) => {
         sections.push(`• ${this.getComplianceRuleDescription(rule)}`);
       });
     }
