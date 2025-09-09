@@ -10,7 +10,10 @@ import {
 
 export class RulepackLoader {
   private static cache = new Map<string, AnyRulepack>();
-  private static readonly RULEPACK_DIR = join(process.cwd(), "rulepacks/format");
+  // Lazily resolve to avoid evaluation issues during build/edge analysis
+  private static getRulepackDir(): string {
+    return join(process.cwd(), "rulepacks/format");
+  }
 
   /**
    * Load a rulepack by format and version
@@ -27,10 +30,7 @@ export class RulepackLoader {
     }
 
     try {
-      const filePath = join(
-        this.RULEPACK_DIR,
-        `${format}_${version}.yaml`
-      );
+      const filePath = join(this.getRulepackDir(), `${format}_${version}.yaml`);
       const fileContent = await readFile(filePath, "utf-8");
       const rawData = yaml.load(fileContent);
 

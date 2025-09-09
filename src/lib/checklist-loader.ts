@@ -17,7 +17,10 @@ export interface ChecklistMetadata {
 
 export class ChecklistLoader {
   private static cache = new Map<string, ChecklistItem[]>();
-  private static readonly CHECKLIST_DIR = join(process.cwd(), "checklists");
+  // Lazily resolve to avoid evaluation issues during build/edge analysis
+  private static getChecklistDir(): string {
+    return join(process.cwd(), "checklists");
+  }
 
   /**
    * Load checklist for a specific format and level
@@ -36,7 +39,7 @@ export class ChecklistLoader {
 
     try {
       const filename = `${format}_${level}_${version}.md`;
-      const filePath = join(this.CHECKLIST_DIR, filename);
+      const filePath = join(this.getChecklistDir(), filename);
       const fileContent = await readFile(filePath, "utf-8");
 
       const checklist = this.parseMarkdownChecklist(fileContent);
