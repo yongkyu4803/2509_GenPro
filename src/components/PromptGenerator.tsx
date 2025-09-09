@@ -367,7 +367,9 @@ export default function PromptGenerator() {
                       </div>
                       <div className="p-6 bg-gradient-to-br from-background to-muted/30 rounded-lg border border-border/30 shadow-modern">
                         <pre className="whitespace-pre-wrap text-sm leading-relaxed text-foreground">
-                          {result.data.prompt}
+                          {typeof result.data.prompt === 'string'
+                            ? result.data.prompt
+                            : JSON.stringify(result.data.prompt, null, 2)}
                         </pre>
                       </div>
                     </div>
