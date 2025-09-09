@@ -120,16 +120,8 @@ export default function PromptGenerator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-accent/5">
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
-          <div className="mb-12 text-center animate-fade-up">
-            <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              국회 보좌진 프롬프트 생성기
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              전문적인 정치 콘텐츠 작성을 위한 AI 프롬프트를 생성합니다
-            </p>
-          </div>
 
           <div className="grid grid-cols-1 gap-8">
             {/* Form Section */}
