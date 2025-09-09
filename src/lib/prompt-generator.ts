@@ -22,7 +22,7 @@ export class PromptGenerator {
    * Generate system prompt that instructs LLM to create topic-customized prompts
    */
   static generateSystemPrompt(config: SystemPromptConfig): string {
-    const { rulepack, format, level, tone, mode, additionalRequirements = [], strictMode = false } = config;
+    const { rulepack, format, level, mode, additionalRequirements = [], strictMode = false } = config;
 
     const tokenLimit = this.getTokenLimitForLevel(level);
     const formatName = this.getFormatDisplayName(format);
@@ -332,16 +332,13 @@ export class PromptGenerator {
     let checklist;
     try {
       checklist = await ChecklistLoader.validateAgainstChecklist(content, format, level, version);
-    } catch (_error) {
+    } catch {
       // Create fallback checklist result if file doesn't exist
       checklist = {
-        format,
-        level,
         passed: [],
         failed: [],
+        total: 0,
         score: 80, // Default neutral score
-        totalChecks: 0,
-        passedChecks: 0,
       };
     }
 
