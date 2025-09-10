@@ -167,7 +167,7 @@ export default function GlobalNavbar() {
 
             {/* AI Learning Platform 링크 */}
             <a
-              href="https://gq-ai.vercel.app/"
+              href="https://gqai.kr/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-blue-600 hover:bg-blue-50 transition-colors"
